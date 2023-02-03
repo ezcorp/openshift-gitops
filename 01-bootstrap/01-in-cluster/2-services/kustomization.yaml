@@ -1,0 +1,66 @@
+resources:
+
+# cert-manager
+-argocd/operators/cert-manager.yaml
+# -argocd/instances/cert-manager-instance.yaml
+
+# Logging to syslogd
+-argocd/operators/openshift-logging.yaml
+-argocd/instances/openshift-logging-instance.yaml
+
+# post-deployment configurations
+-argocd/configs/configs.yaml
+
+# customized SCC and RBAC roles
+-argocd/rbac/rbac.yaml
+
+# Service Mesh
+#- argocd/operators/elasticsearch.yaml
+#- argocd/operators/jaeger.yaml
+#- argocd/operators/kiali.yaml
+#- argocd/operators/openshift-service-mesh.yaml
+#- argocd/instances/openshift-service-mesh-instance.yaml
+
+# Monitoring
+#- argocd/instances/instana-agent.yaml
+#- argocd/instances/instana-robot-shop.yaml
+
+patches:
+- target:
+    group: argoproj.io
+    kind: Application
+    labelSelector: "gitops.tier.layer=services,gitops.tier.source=git"
+  patch: |-
+    - op: add
+      path: /spec/source/repoURL
+      value: https://github.com/ezcorp/openshift-gitops-services.git
+    - op: add
+      path: /spec/source/targetRevision
+      value: master
+- target:
+    group: argoproj.io
+    kind: Application
+    labelSelector: "gitops.tier.layer=applications,gitops.tier.source=git"
+  patch: |-
+    - op: add
+      path: /spec/source/repoURL
+      value: https://github.com/ezcorp/openshift-gitops-apps.git
+    - op: add
+      path: /spec/source/targetRevision
+      value: master
+#- target:
+#    group: argoproj.io
+#    kind: Application
+#    labelSelector: "gitops.tier.layer=services,gitops.tier.source=helm"
+#  patch: |-
+#    - op: add
+#      path: /spec/source/repoURL
+#      value: https://charts.cloudnativetoolkit.dev
+#- target:
+#    name: ibm-automation-foundation-operator
+#  patch: |-
+#    - op: add
+#      path: /spec/source/helm/parameters/-
+#      value:
+#        name: spec.channel
+#        value: v1.1
