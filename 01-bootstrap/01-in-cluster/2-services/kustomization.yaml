@@ -1,18 +1,18 @@
 resources:
 
 # cert-manager
--argocd/operators/cert-manager.yaml
-# -argocd/instances/cert-manager-instance.yaml
+- argocd/operators/cert-manager.yaml
+# - argocd/instances/cert-manager-instance.yaml
 
 # Logging to syslogd
--argocd/operators/openshift-logging.yaml
--argocd/instances/openshift-logging-instance.yaml
+- argocd/operators/openshift-logging.yaml
+- argocd/instances/openshift-logging-instance.yaml
 
 # post-deployment configurations
--argocd/configs/configs.yaml
+- argocd/configs/configs.yaml
 
 # customized SCC and RBAC roles
--argocd/rbac/rbac.yaml
+- argocd/rbac/rbac.yaml
 
 # Service Mesh
 #- argocd/operators/elasticsearch.yaml
