@@ -76,6 +76,16 @@ spec:
     kind: PersistentVolume
   - group: ""
     kind: Namespace
+  - group: ""
+    kind: PersistentVolumeClaim
+  - group: ""
+    kind: ConfigMap
+  - group: ""
+    kind: APIServer
+  - group: ""
+    kind: IngressController
+  - group: ""
+    kind: Template
   roles:
   # A role which provides read-only access to all applications in the project
   - name: read-only
