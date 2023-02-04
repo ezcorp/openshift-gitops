@@ -1,0 +1,1 @@
+With Operator version 1.7.1, when DISABLE_DEFAULT_ARGOCD_INSTANCE is set to "TRUE", do not use the default name "openshift-gitops" as the ArgoCD instance name, the instance will be deleted automatically. Use "argocd" as name for instance. 
