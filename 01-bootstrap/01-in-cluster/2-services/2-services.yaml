@@ -114,5 +114,5 @@ spec:
     path: 01-bootstrap/01-in-cluster/2-services
   syncPolicy:
     automated:
-      prune: true
-      selfHeal: true
+      prune: false
+      selfHeal: false
