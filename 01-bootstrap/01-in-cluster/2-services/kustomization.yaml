@@ -14,6 +14,8 @@ resources:
 # customized SCC and RBAC roles
 - argocd/rbac/rbac.yaml
 
+- argocd/oauth/oauth.yaml
+
 # Service Mesh
 #- argocd/operators/elasticsearch.yaml
 #- argocd/operators/jaeger.yaml

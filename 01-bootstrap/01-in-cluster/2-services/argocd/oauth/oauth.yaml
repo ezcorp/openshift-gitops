@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: oauth-in-cluster
+  annotations:
+    argocd.argoproj.io/sync-wave: "200"
+  labels:
+    gitops.tier.group: cntk
+    gitops.tier.layer: services
+    gitops.tier.source: git
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    server: 'https://kubernetes.default.svc'
+  project: services
+  source:
+    path: ldap
+    plugin:
+      name: argocd-vault-plugin
+      env:
+        - name: AVP_AUTH_TYPE
+          value: approle
+        - name: AVP_TYPE
+          value: vault
+        - name: AVP_VAULT_ADDR
+          value: 'https://vault.myazure.online:8200'
+        - name: AVP_ROLE_ID
+          value: b6e327ec-e2b2-dab9-616b-060c38ad70af 
+        - name: AVP_SECRET_ID
+          value: <secret> 
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: false
+    syncOptions:
+      - CreateNamespace=true
