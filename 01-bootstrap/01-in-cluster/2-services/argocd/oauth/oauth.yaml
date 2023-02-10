@@ -4,6 +4,7 @@ metadata:
   name: oauth-in-cluster
   annotations:
     argocd.argoproj.io/sync-wave: "200"
+    avp.kubernetes.io/path: "vplugin/data/supersecret"
   labels:
     gitops.tier.group: cntk
     gitops.tier.layer: services
@@ -28,7 +29,7 @@ spec:
         - name: AVP_ROLE_ID
           value: b6e327ec-e2b2-dab9-616b-060c38ad70af 
         - name: AVP_SECRET_ID
-          value: <secret> 
+          value: <approle_secret> 
   syncPolicy:
     automated:
       prune: false
