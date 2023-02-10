@@ -45,7 +45,7 @@ spec:
   clusterResourceWhitelist:
   # TODO: SCC needs to be moved to 1-infra, here for now for artifactory
   - group: "config.openshift.io"
-    kind: Oauth
+    kind: OAuth
   - group: "security.openshift.io"
     kind: SecurityContextConstraints
   - group: "console.openshift.io"
